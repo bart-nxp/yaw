@@ -13,16 +13,16 @@
 class WavFile
 {
 private:
-    FILE *fp_ = (FILE *)0;
+    bool disable_writing_ = false;
     uint32_t bytes_per_sample_ = 0u;
     uint32_t samples_per_block_ = 0u;
+    uint32_t next_ch_ = 0u;
+    unsigned char *mem_ = (unsigned char*) 0;                      // bytes_per_block bytes
+    FILE *fp_ = (FILE *)0;
     uint32_t bytes_per_block_ = 0u;
     uint32_t chans_ = 0u;           // number of channels
-    uint32_t next_ch_ = 0u;
     uint32_t up_shift_bits_ = 0u;  // set to 8 for 24 bit to 32 bit conversion
-    unsigned char *mem_ = (unsigned char*) 0;                      // bytes_per_block bytes
     uint32_t byte_pos_ = 0u;
-    bool disable_writing_;
 
     struct Wav_header {
         char riff_header[4] = {'R','I','F','F'};

@@ -63,7 +63,7 @@ bool WavFile::fill_channel(const void *buffer, int32_t ch)
     {   // by default fill the next channel
         ch = next_ch_;
     }
-    if (ch >= chans_)
+    if (ch >= (int32_t)chans_)
     {
         return false;
     }

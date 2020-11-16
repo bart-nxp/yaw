@@ -5,7 +5,7 @@ HEADS = $(shell find ./include -type f -name *.hpp)
 OBJS = $(SRCS:.cpp=.o)
 DEPS = Makefile.depend
 
-INCLUDES = -I./include
+INCLUDES = -I./include/WavFile
 CXXFLAGS = -O2 -Wall $(INCLUDES)
 LDFLAGS = -lm
 

@@ -10,7 +10,6 @@
 
 void generate_sine(int32_t* frame_buf, uint32_t num_samples, float amplitude_lin, float *state_ref)
 {
-    int i;
     float freq;
     float angle, increment, sample;
     float fullscale;
@@ -19,7 +18,7 @@ void generate_sine(int32_t* frame_buf, uint32_t num_samples, float amplitude_lin
     fullscale = (float)(1 << 23);  // max 24 bit LSB used
     freq = 2000.0;
     increment = 2 * M_PI * freq /(float)SAMPLE_RATE;
-    for (i = 0; i < num_samples; i++)
+    for (auto i = 0u; i < num_samples; i++)
     {
         sample = amplitude_lin * sinf(angle);
         frame_buf[i] = (int32_t)(floorf(sample*fullscale + 0.5));  // convert to 32 bit
@@ -39,7 +38,7 @@ int main(int argc, char * argv[])
 {
     int32_t frames[NUM_CH][SAMPLES_PER_FRAME];
 
-    std::cout << "Hello" << std::endl;
+    std::cout << "Wav Writing Example" << std::endl;
 
     float input_samples_states[NUM_CH] = {0.0};
 
@@ -60,6 +59,7 @@ int main(int argc, char * argv[])
         assert(true == sf.fill_channel(frames[ch]));
     }
     assert(true == sf.write());
+    std::cout << "wrote file " << output_file_name << std::endl;
 
     return 0;
 }
